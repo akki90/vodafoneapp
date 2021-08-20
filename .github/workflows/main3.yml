@@ -9,7 +9,7 @@ jobs:
       - name: Create a build file
         run: ifconfig > ifconfig.txt
 
-        - name: Pass the file to next job for next phase
+      - name: Pass the file to next job for next phase
           uses: actions/upload-artifact@v2
           with:
             name: textfile
