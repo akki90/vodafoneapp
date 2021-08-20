@@ -1,0 +1,30 @@
+name: Akki Workflow
+ on: [push]
+
+ jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a build file
+        run: ifconfig > ifconfig.txt
+
+        - name: Pass the file to next job for next phase
+          uses: actions/upload-artifact@v2
+          with:
+            name: textfile
+            path: ifconfig.txt
+          if: always()
+
+
+  test:
+    runs-on: windows-latest
+    needs: build
+    steps:
+      - name: download the file from Build
+        uses: actions/download-artifact@v2
+        with:
+          name: textfile
+      - name: Validation if the file is created
+        run: cat ifconfig.txt
+
+  
