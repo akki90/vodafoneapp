@@ -1,7 +1,8 @@
 name: Akki Workflow
- on: [push]
 
- jobs:
+on: [push]
+
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
